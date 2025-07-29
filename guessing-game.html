@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Guessing Game
+    </title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color:blue;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background-color: white;
+            width: 300px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;;
+        }
+
+        h1 {
+            color: brown;
+
+        }
+
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 80px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+        .message {
+            background-color: bisque;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1> Guessing Game</h1>
+        
+        <p>I'm thinking of a number between 1 and 10!</p>
+        
+        <input type="number" id="guess" placeholder="?">
+        <br><br>
+        <button onclick="checkGuess()">Guess!</button>
+        <button onclick="newGame()">New Game</button>
+        
+        <div class="message" id="result">Make your guess!</div>
+    </div>
+
+    <script>
+        var secretNumber;
+
+        function newGame() {
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('result').innerHTML = "Make your guess!";
+            document.getElementById('guess').value = "";
+        }
+        
+        function checkGuess() {
+            var userGuess = document.getElementById('guess').value;
+            var message = document.getElementById('result');
+            
+            if (userGuess == "") {
+                message.innerHTML = "Please enter a number!";
+                return;
+            }
+            
+            var myGuess = Number(userGuess);
+            
+            if (myGuess == secretNumber) {
+                message.innerHTML = "🎉 You got it! The number was " + secretNumber;
+            }
+            else if (myGuess < secretNumber) {
+                message.innerHTML = "Too low! Try higher!";
+            }
+            else {
+                message.innerHTML = "Too high! Try lower!";
+            }
+        }
+        
+        newGame();
+    </script>
+    </style>
+</head>
+</html>
